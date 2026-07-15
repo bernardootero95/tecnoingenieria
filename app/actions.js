@@ -1,6 +1,7 @@
 "use server";
 
 import { Resend } from "resend";
+import { headers } from "next/headers";
 import { contactSchema } from "@/lib/validations";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
@@ -10,7 +11,14 @@ const CORREO_DESTINO =
 const CORREO_ORIGEN = process.env.CORREO_ORIGEN || "onboarding@resend.dev";
 
 // ==========================================
-// PLANTILLAS DE CORREO (Extraídas por SRP)
+// SEGURIDAD: RATE LIMITING (En memoria)
+// ==========================================
+const rateLimitMap = new Map();
+const RATE_LIMIT_WINDOW = 60000; // 1 minuto
+const MAX_REQUESTS = 3; // Máximo 3 envíos por IP cada minuto
+
+// ==========================================
+// PLANTILLAS DE CORREO
 // ==========================================
 const generarHtmlNotificacion = ({
   nombre,
@@ -79,23 +87,58 @@ const generarHtmlConfirmacion = ({ nombre, servicio, mensaje }) => `
 // CONTROLADOR PRINCIPAL
 // ==========================================
 export async function enviarContacto(prevState, formData) {
-  // 1. Extraer datos del formData
+  // 1. APLICAR RATE LIMITING
+  const headersList = headers();
+  const ip = headersList.get("x-forwarded-for") || "ip-desconocida";
+  const now = Date.now();
+  const userRecord = rateLimitMap.get(ip);
+
+  if (userRecord) {
+    if (now - userRecord.startTime < RATE_LIMIT_WINDOW) {
+      if (userRecord.count >= MAX_REQUESTS) {
+        return {
+          ok: false,
+          errors: null,
+          message: "Demasiadas solicitudes. Por favor, espera un minuto.",
+        };
+      }
+      userRecord.count++;
+    } else {
+      rateLimitMap.set(ip, { count: 1, startTime: now });
+    }
+  } else {
+    rateLimitMap.set(ip, { count: 1, startTime: now });
+  }
+
+  // Limpieza simple para evitar fugas de memoria en el servidor
+  if (rateLimitMap.size > 1000) rateLimitMap.clear();
+
+  // 2. EXTRAER DATOS
   const rawData = {
     nombre: formData.get("nombre")?.toString().trim(),
     email: formData.get("email")?.toString().trim(),
     empresa: formData.get("empresa")?.toString().trim(),
     servicio: formData.get("servicio")?.toString().trim(),
     mensaje: formData.get("mensaje")?.toString().trim(),
+    botcheck: formData.get("botcheck")?.toString().trim(),
   };
 
-  // 2. Validar con Zod
+  // 3. VALIDACIÓN (ZOD)
   const validatedFields = contactSchema.safeParse(rawData);
 
   if (!validatedFields.success) {
-    // Si falla, devolvemos los errores específicos por cada campo
+    const fieldErrors = validatedFields.error.flatten().fieldErrors;
+
+    // Si el Honeypot fue detectado (un bot llenó el campo oculto)
+    if (fieldErrors.botcheck) {
+      // Le mentimos al bot devolviendo un éxito (Status 200 virtual) para que no cambie de estrategia.
+      console.warn(`[SEGURIDAD] Intento de SPAM bloqueado desde IP: ${ip}`);
+      return { ok: true, errors: null, message: "Mensaje enviado con éxito." };
+    }
+
     return {
       ok: false,
-      errors: validatedFields.error.flatten().fieldErrors,
+      errors: fieldErrors,
       message: "Por favor, corrige los errores en el formulario.",
     };
   }
@@ -103,7 +146,7 @@ export async function enviarContacto(prevState, formData) {
   const data = validatedFields.data;
 
   try {
-    // 3. Enviar correos en paralelo para mayor velocidad
+    // 4. ENVÍO DE CORREOS
     await Promise.all([
       resend.emails.send({
         from: CORREO_ORIGEN,

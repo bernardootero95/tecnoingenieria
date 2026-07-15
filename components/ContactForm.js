@@ -203,7 +203,22 @@ export default function ContactForm() {
           )}
         </div>
 
-        {/* Mensaje de error general de servidor (Opcional) */}
+        {/* HONEYPOT (Trampa para Bots) */}
+        <div
+          className="absolute opacity-0 -z-10 w-0 h-0 overflow-hidden"
+          aria-hidden="true"
+        >
+          <label htmlFor="botcheck">No llenes este campo si eres humano</label>
+          <input
+            id="botcheck"
+            name="botcheck"
+            type="text"
+            tabIndex="-1"
+            autoComplete="off"
+          />
+        </div>
+
+        {/* Mensaje de error general de servidor */}
         {!state?.ok && state?.message && !state?.errors && (
           <div className="bg-red-50 border border-red-100 text-red-600 text-sm px-4 py-3 rounded-xl font-medium">
             {state.message}
