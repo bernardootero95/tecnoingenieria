@@ -3,7 +3,7 @@
 import { useFormState, useFormStatus } from "react-dom";
 import { enviarContacto } from "@/app/actions";
 
-const initialState = { ok: false, error: null };
+const initialState = { ok: false, errors: null, message: null };
 
 function SubmitButton() {
   const { pending } = useFormStatus();
@@ -42,9 +42,9 @@ function SubmitButton() {
 export default function ContactForm() {
   const [state, formAction] = useFormState(enviarContacto, initialState);
 
-  if (state.ok) {
+  if (state?.ok) {
     return (
-      <div className="bg-white border border-gray-100 rounded-3xl p-8 shadow-sm flex flex-col items-center justify-center min-h-[400px] text-center">
+      <div className="bg-white border border-gray-100 rounded-3xl p-8 shadow-sm flex flex-col items-center justify-center min-h-[400px] text-center animate-fade-in">
         <div className="w-16 h-16 bg-verde-100 text-verde-600 rounded-full flex items-center justify-center mb-6">
           <svg
             className="w-8 h-8"
@@ -93,10 +93,18 @@ export default function ContactForm() {
               id="nombre"
               name="nombre"
               type="text"
-              required
               placeholder="Juan García"
-              className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-verde-500 focus:border-transparent transition-all"
+              className={`w-full px-4 py-3 bg-gray-50 border rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-verde-500 transition-all ${
+                state?.errors?.nombre
+                  ? "border-red-500"
+                  : "border-gray-200 focus:border-transparent"
+              }`}
             />
+            {state?.errors?.nombre && (
+              <p className="mt-1.5 text-xs text-red-500 font-medium">
+                {state.errors.nombre[0]}
+              </p>
+            )}
           </div>
           <div>
             <label
@@ -109,10 +117,18 @@ export default function ContactForm() {
               id="email"
               name="email"
               type="email"
-              required
               placeholder="tu@empresa.com"
-              className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-verde-500 focus:border-transparent transition-all"
+              className={`w-full px-4 py-3 bg-gray-50 border rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-verde-500 transition-all ${
+                state?.errors?.email
+                  ? "border-red-500"
+                  : "border-gray-200 focus:border-transparent"
+              }`}
             />
+            {state?.errors?.email && (
+              <p className="mt-1.5 text-xs text-red-500 font-medium">
+                {state.errors.email[0]}
+              </p>
+            )}
           </div>
         </div>
 
@@ -142,8 +158,11 @@ export default function ContactForm() {
           <select
             id="servicio"
             name="servicio"
-            required
-            className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-verde-500 focus:border-transparent transition-all text-gray-700"
+            className={`w-full px-4 py-3 bg-gray-50 border rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-verde-500 transition-all text-gray-700 ${
+              state?.errors?.servicio
+                ? "border-red-500"
+                : "border-gray-200 focus:border-transparent"
+            }`}
           >
             <option value="">Selecciona un servicio...</option>
             <option>Desarrollo de Software</option>
@@ -152,6 +171,11 @@ export default function ContactForm() {
             <option>Consultoría Tecnológica</option>
             <option>Otro</option>
           </select>
+          {state?.errors?.servicio && (
+            <p className="mt-1.5 text-xs text-red-500 font-medium">
+              {state.errors.servicio[0]}
+            </p>
+          )}
         </div>
 
         <div>
@@ -165,15 +189,24 @@ export default function ContactForm() {
             id="mensaje"
             name="mensaje"
             rows={5}
-            required
             placeholder="Describe brevemente qué necesitas, el tamaño de tu empresa y cualquier detalle relevante..."
-            className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-verde-500 focus:border-transparent transition-all resize-none"
+            className={`w-full px-4 py-3 bg-gray-50 border rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-verde-500 transition-all resize-none ${
+              state?.errors?.mensaje
+                ? "border-red-500"
+                : "border-gray-200 focus:border-transparent"
+            }`}
           />
+          {state?.errors?.mensaje && (
+            <p className="mt-1.5 text-xs text-red-500 font-medium">
+              {state.errors.mensaje[0]}
+            </p>
+          )}
         </div>
 
-        {state.error && (
-          <div className="bg-red-50 border border-red-100 text-red-600 text-sm px-4 py-3 rounded-xl">
-            {state.error}
+        {/* Mensaje de error general de servidor (Opcional) */}
+        {!state?.ok && state?.message && !state?.errors && (
+          <div className="bg-red-50 border border-red-100 text-red-600 text-sm px-4 py-3 rounded-xl font-medium">
+            {state.message}
           </div>
         )}
 
