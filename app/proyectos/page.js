@@ -1,36 +1,39 @@
-import Link from 'next/link'
-import { proyectos } from '@/lib/data'
+import Link from "next/link";
+import { getProyectos } from "@/lib/repositories";
 
 export const metadata = {
-  title: 'Proyectos Realizados | Portafolio de Soluciones Tecnológicas',
+  title: "Proyectos Realizados | Portafolio de Soluciones Tecnológicas",
   description:
-    'Portafolio de proyectos de TecnoIngeniería B.O.: sistemas de software, infraestructura de redes, dashboards de datos y consultoría tecnológica para empresas en Colombia.',
+    "Portafolio de proyectos de TecnoIngeniería B.O.: sistemas de software, infraestructura de redes, dashboards de datos y consultoría tecnológica para empresas en Colombia.",
   alternates: {
-    canonical: 'https://tecnoingenieriabo.com/proyectos',
+    canonical: "https://tecnoingenieriabo.com/proyectos",
   },
   openGraph: {
-    title: 'Proyectos | TecnoIngeniería B.O.',
-    description: 'Portafolio de soluciones tecnológicas entregadas a empresas en Colombia.',
-    url: 'https://tecnoingenieriabo.com/proyectos',
+    title: "Proyectos | TecnoIngeniería B.O.",
+    description:
+      "Portafolio de soluciones tecnológicas entregadas a empresas en Colombia.",
+    url: "https://tecnoingenieriabo.com/proyectos",
   },
-}
+};
 
-const categorias = ['Todos', 'Software', 'Redes', 'Datos', 'Consultoría']
+export default async function ProyectosPage() {
+  const proyectos = await getProyectos();
 
-export default function ProyectosPage() {
   return (
     <>
       {/* Hero */}
       <section className="relative pt-32 pb-16 bg-gray-950 overflow-hidden">
         <div className="absolute inset-0 bg-grid opacity-10" />
         <div className="relative z-10 mx-auto max-w-4xl px-6 text-center">
-          <p className="text-verde-400 font-bold text-xs uppercase tracking-[0.3em] mb-4">Nuestro trabajo</p>
+          <p className="text-verde-400 font-bold text-xs uppercase tracking-[0.3em] mb-4">
+            Nuestro trabajo
+          </p>
           <h1 className="font-display text-5xl md:text-6xl font-extrabold text-white tracking-tighter mb-6">
             Proyectos realizados
           </h1>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            Casos de éxito reales. Soluciones tecnológicas que transformaron la operación
-            de empresas e instituciones en Colombia.
+            Casos de éxito reales. Soluciones tecnológicas que transformaron la
+            operación de empresas e instituciones en Colombia.
           </p>
         </div>
       </section>
@@ -46,7 +49,7 @@ export default function ProyectosPage() {
               >
                 {/* Número decorativo */}
                 <span className="absolute top-6 right-8 font-display text-8xl font-black text-gray-100 group-hover:text-verde-50 transition-colors select-none">
-                  {String(p.id).padStart(2, '0')}
+                  {String(p.id).padStart(2, "0")}
                 </span>
 
                 <div className="relative z-10">
@@ -54,7 +57,9 @@ export default function ProyectosPage() {
                     <span className="text-xs font-bold text-verde-600 bg-verde-50 border border-verde-100 px-3 py-1 rounded-full">
                       {p.categoria}
                     </span>
-                    <span className="text-xs text-gray-400 font-medium">{p.año}</span>
+                    <span className="text-xs text-gray-400 font-medium">
+                      {p.año}
+                    </span>
                   </div>
 
                   <h2 className="font-display text-2xl font-extrabold text-gray-950 tracking-tighter mb-2">
@@ -63,7 +68,9 @@ export default function ProyectosPage() {
                   <p className="text-verde-600 text-xs font-bold uppercase tracking-widest mb-4">
                     {p.cliente}
                   </p>
-                  <p className="text-gray-500 leading-relaxed">{p.descripcion}</p>
+                  <p className="text-gray-500 leading-relaxed">
+                    {p.descripcion}
+                  </p>
                 </div>
               </article>
             ))}
@@ -71,8 +78,13 @@ export default function ProyectosPage() {
 
           {/* Placeholder más proyectos */}
           <div className="mt-10 bg-verde-600 rounded-3xl p-10 text-center text-white">
-            <h2 className="font-display text-2xl font-extrabold mb-3">¿Quieres ver más proyectos?</h2>
-            <p className="text-verde-100 mb-6">Contáctanos y te compartimos nuestro portafolio completo con fichas técnicas detalladas.</p>
+            <h2 className="font-display text-2xl font-extrabold mb-3">
+              ¿Quieres ver más proyectos?
+            </h2>
+            <p className="text-verde-100 mb-6">
+              Contáctanos y te compartimos nuestro portafolio completo con
+              fichas técnicas detalladas.
+            </p>
             <Link
               href="/contacto"
               className="inline-flex items-center gap-2 bg-white text-verde-700 font-extrabold px-8 py-3.5 rounded-xl hover:bg-verde-50 transition-all text-sm uppercase tracking-wide"
@@ -99,5 +111,5 @@ export default function ProyectosPage() {
         </div>
       </section>
     </>
-  )
+  );
 }

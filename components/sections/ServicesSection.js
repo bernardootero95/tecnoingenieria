@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { servicios } from "@/lib/data";
+import { getServicios } from "@/lib/repositories";
 
 const iconMap = {
   software: (
@@ -64,7 +64,9 @@ const iconMap = {
   ),
 };
 
-export default function ServicesSection() {
+export default async function ServicesSection() {
+  const servicios = await getServicios();
+
   return (
     <section id="servicios" className="py-24 bg-gray-50">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">

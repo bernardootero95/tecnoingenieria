@@ -1,9 +1,10 @@
 import Link from "next/link";
 import Image from "next/image";
-import { empresa } from "@/lib/data";
+import { getEmpresa } from "@/lib/repositories";
 
-export default function Footer() {
+export default async function Footer() {
   const year = new Date().getFullYear();
+  const empresa = await getEmpresa();
 
   return (
     <footer className="bg-gray-950 text-gray-400">

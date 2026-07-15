@@ -1,7 +1,9 @@
 import Link from "next/link";
-import { proyectos } from "@/lib/data";
+import { getProyectos } from "@/lib/repositories";
 
-export default function ProjectsSection() {
+export default async function ProjectsSection() {
+  const proyectos = await getProyectos();
+
   return (
     <section id="proyectos" className="py-24 bg-gray-50">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
