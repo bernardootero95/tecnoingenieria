@@ -1,6 +1,23 @@
+import { Roboto, Roboto_Condensed } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+
+// Configuración de fuentes optimizadas (cero render-blocking)
+const robotoBody = Roboto({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "700", "900"],
+  variable: "--font-body",
+  display: "swap",
+});
+
+const robotoDisplay = Roboto_Condensed({
+  subsets: ["latin"],
+  weight: ["400", "700", "900"],
+  style: ["normal", "italic"],
+  variable: "--font-display",
+  display: "swap",
+});
 
 export const metadata = {
   metadataBase: new URL("https://tecnoingenieriabo.com"),
@@ -66,8 +83,11 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="es-CO">
-      <body>
+    <html
+      lang="es-CO"
+      className={`${robotoBody.variable} ${robotoDisplay.variable}`}
+    >
+      <body className="antialiased font-body bg-white text-gray-900">
         <script
           async
           src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"
@@ -75,11 +95,11 @@ export default function RootLayout({ children }) {
         <script
           dangerouslySetInnerHTML={{
             __html: `
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-JL5JEPN9KF');
-      `,
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-JL5JEPN9KF');
+            `,
           }}
         />
         <Navbar />

@@ -1,12 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&family=Roboto+Condensed:ital,wght@0,400;0,700;0,900;1,400&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --font-display: 'Roboto Condensed', sans-serif;
-  --font-body: 'Roboto', sans-serif;
   --verde: #008445;
   --verde-dark: #006b38;
   --verde-light: #d9f2e3;
@@ -21,30 +17,51 @@ html {
 }
 
 body {
-  font-family: var(--font-body);
+  font-family: var(--font-body), sans-serif;
   background: #ffffff;
   color: #111;
   -webkit-font-smoothing: antialiased;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-display);
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-display), sans-serif;
 }
 
 /* Animaciones de entrada */
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(24px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes slideRight {
-  from { opacity: 0; transform: translateX(-20px); }
-  to   { opacity: 1; transform: translateX(0); }
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 .animate-fade-up {
@@ -56,22 +73,41 @@ h1, h2, h3, h4, h5, h6 {
 .animate-slide-right {
   animation: slideRight 0.6s ease both;
 }
-.delay-100 { animation-delay: 0.1s; }
-.delay-200 { animation-delay: 0.2s; }
-.delay-300 { animation-delay: 0.3s; }
-.delay-400 { animation-delay: 0.4s; }
-.delay-500 { animation-delay: 0.5s; }
-.delay-600 { animation-delay: 0.6s; }
+.delay-100 {
+  animation-delay: 0.1s;
+}
+.delay-200 {
+  animation-delay: 0.2s;
+}
+.delay-300 {
+  animation-delay: 0.3s;
+}
+.delay-400 {
+  animation-delay: 0.4s;
+}
+.delay-500 {
+  animation-delay: 0.5s;
+}
+.delay-600 {
+  animation-delay: 0.6s;
+}
 
 /* Grid decorativo */
 .bg-grid {
   background-image:
-    linear-gradient(rgba(0,132,69,0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,132,69,0.06) 1px, transparent 1px);
+    linear-gradient(rgba(0, 132, 69, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 132, 69, 0.06) 1px, transparent 1px);
   background-size: 40px 40px;
 }
 
 /* Scrollbar */
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: #f0faf4; }
-::-webkit-scrollbar-thumb { background: #008445; border-radius: 3px; }
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f0faf4;
+}
+::-webkit-scrollbar-thumb {
+  background: #008445;
+  border-radius: 3px;
+}
