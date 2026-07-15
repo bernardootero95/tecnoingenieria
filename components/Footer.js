@@ -1,9 +1,9 @@
-import Link from 'next/link'
-import Image from 'next/image'
-import { empresa } from '@/lib/data'
+import Link from "next/link";
+import Image from "next/image";
+import { empresa } from "@/lib/data";
 
 export default function Footer() {
-  const year = new Date().getFullYear()
+  const year = new Date().getFullYear();
 
   return (
     <footer className="bg-gray-950 text-gray-400">
@@ -13,7 +13,13 @@ export default function Footer() {
           <div>
             <div className="flex items-center gap-2.5 mb-4">
               <div className="w-8 h-8 relative">
-                <Image src="/simbolo.png" alt="Logo TecnoIngeniería B.O." fill className="object-contain brightness-0 invert" />
+                <Image
+                  src="/simbolo.png"
+                  alt="Logo TecnoIngeniería B.O."
+                  fill
+                  sizes="32px"
+                  className="object-contain brightness-0 invert"
+                />
               </div>
               <span className="font-display font-bold text-white text-sm">
                 TECNO <span className="text-verde-400">INGENIERÍA</span> B.O.
@@ -26,17 +32,22 @@ export default function Footer() {
 
           {/* Links */}
           <div>
-            <h3 className="text-white font-semibold text-sm mb-4 uppercase tracking-widest">Navegación</h3>
+            <h3 className="text-white font-semibold text-sm mb-4 uppercase tracking-widest">
+              Navegación
+            </h3>
             <ul className="space-y-2.5 text-sm">
               {[
-                { href: '/', label: 'Inicio' },
-                { href: '/nosotros', label: 'Nosotros' },
-                { href: '/servicios', label: 'Servicios' },
-                { href: '/proyectos', label: 'Proyectos' },
-                { href: '/contacto', label: 'Contacto' },
+                { href: "/", label: "Inicio" },
+                { href: "/nosotros", label: "Nosotros" },
+                { href: "/servicios", label: "Servicios" },
+                { href: "/proyectos", label: "Proyectos" },
+                { href: "/contacto", label: "Contacto" },
               ].map((l) => (
                 <li key={l.href}>
-                  <Link href={l.href} className="hover:text-verde-400 transition-colors">
+                  <Link
+                    href={l.href}
+                    className="hover:text-verde-400 transition-colors"
+                  >
                     {l.label}
                   </Link>
                 </li>
@@ -46,15 +57,23 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <h3 className="text-white font-semibold text-sm mb-4 uppercase tracking-widest">Contacto</h3>
+            <h3 className="text-white font-semibold text-sm mb-4 uppercase tracking-widest">
+              Contacto
+            </h3>
             <ul className="space-y-2.5 text-sm">
               <li>
-                <a href={`tel:${empresa.telefono}`} className="hover:text-verde-400 transition-colors">
+                <a
+                  href={`tel:${empresa.telefono}`}
+                  className="hover:text-verde-400 transition-colors"
+                >
                   {empresa.telefono}
                 </a>
               </li>
               <li>
-                <a href={`mailto:${empresa.email}`} className="hover:text-verde-400 transition-colors">
+                <a
+                  href={`mailto:${empresa.email}`}
+                  className="hover:text-verde-400 transition-colors"
+                >
                   {empresa.email}
                 </a>
               </li>
@@ -64,8 +83,12 @@ export default function Footer() {
         </div>
 
         <div className="pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-gray-600">
-          <p>© {year} {empresa.nombre}. Todos los derechos reservados.</p>
-          <p>{empresa.ciudad}, {empresa.departamento} — Colombia</p>
+          <p>
+            © {year} {empresa.nombre}. Todos los derechos reservados.
+          </p>
+          <p>
+            {empresa.ciudad}, {empresa.departamento} — Colombia
+          </p>
         </div>
       </div>
 
@@ -74,38 +97,38 @@ export default function Footer() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'LocalBusiness',
+            "@context": "https://schema.org",
+            "@type": "LocalBusiness",
             name: empresa.nombre,
             description: empresa.descripcion,
-            url: 'https://tecnoingenieriabo.com',
+            url: "https://tecnoingenieriabo.com",
             telephone: empresa.telefono,
             email: empresa.email,
             address: {
-              '@type': 'PostalAddress',
+              "@type": "PostalAddress",
               addressLocality: empresa.ciudad,
               addressRegion: empresa.departamento,
-              addressCountry: 'CO',
+              addressCountry: "CO",
             },
             areaServed: {
-              '@type': 'GeoCircle',
+              "@type": "GeoCircle",
               geoMidpoint: {
-                '@type': 'GeoCoordinates',
+                "@type": "GeoCoordinates",
                 latitude: 11.0041,
                 longitude: -74.2486,
               },
-              geoRadius: '200000',
+              geoRadius: "200000",
             },
             serviceType: [
-              'Desarrollo de Software',
-              'Redes e Infraestructura',
-              'Análisis de Datos',
-              'Consultoría Tecnológica',
+              "Desarrollo de Software",
+              "Redes e Infraestructura",
+              "Análisis de Datos",
+              "Consultoría Tecnológica",
             ],
             sameAs: [],
           }),
         }}
       />
     </footer>
-  )
+  );
 }

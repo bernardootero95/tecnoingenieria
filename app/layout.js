@@ -88,7 +88,10 @@ export default function RootLayout({ children }) {
       className={`${robotoBody.variable} ${robotoDisplay.variable}`}
       suppressHydrationWarning
     >
-      <body className="antialiased font-body bg-white text-gray-900">
+      <body
+        className="antialiased font-body bg-white text-gray-900"
+        suppressHydrationWarning
+      >
         <script
           async
           src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"
