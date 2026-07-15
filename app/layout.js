@@ -86,6 +86,7 @@ export default function RootLayout({ children }) {
     <html
       lang="es-CO"
       className={`${robotoBody.variable} ${robotoDisplay.variable}`}
+      suppressHydrationWarning
     >
       <body className="antialiased font-body bg-white text-gray-900">
         <script
