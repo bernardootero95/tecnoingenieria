@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { getProyectos } from "@/lib/repositories";
+import ProjectCard from "@/components/ProjectCard";
 
 export const metadata = {
   title: "Proyectos Realizados | Portafolio de Soluciones Tecnológicas",
@@ -43,36 +44,7 @@ export default async function ProyectosPage() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
             {proyectos.map((p) => (
-              <article
-                key={p.id}
-                className="group relative bg-gray-50 border border-gray-100 rounded-3xl p-10 hover:border-verde-200 hover:shadow-xl hover:shadow-verde-600/10 transition-all duration-300 overflow-hidden"
-              >
-                {/* Número decorativo */}
-                <span className="absolute top-6 right-8 font-display text-8xl font-black text-gray-100 group-hover:text-verde-50 transition-colors select-none">
-                  {String(p.id).padStart(2, "0")}
-                </span>
-
-                <div className="relative z-10">
-                  <div className="flex items-center gap-3 mb-6">
-                    <span className="text-xs font-bold text-verde-600 bg-verde-50 border border-verde-100 px-3 py-1 rounded-full">
-                      {p.categoria}
-                    </span>
-                    <span className="text-xs text-gray-400 font-medium">
-                      {p.año}
-                    </span>
-                  </div>
-
-                  <h2 className="font-display text-2xl font-extrabold text-gray-950 tracking-tighter mb-2">
-                    {p.titulo}
-                  </h2>
-                  <p className="text-verde-600 text-xs font-bold uppercase tracking-widest mb-4">
-                    {p.cliente}
-                  </p>
-                  <p className="text-gray-500 leading-relaxed">
-                    {p.descripcion}
-                  </p>
-                </div>
-              </article>
+              <ProjectCard key={p.id} proyecto={p} variant="full" headingTag="h2" />
             ))}
           </div>
 

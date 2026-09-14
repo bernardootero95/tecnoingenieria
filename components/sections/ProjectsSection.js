@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { getProyectos } from "@/lib/repositories";
+import ProjectCard from "@/components/ProjectCard";
 
 export default async function ProjectsSection() {
   const proyectos = await getProyectos();
@@ -26,26 +27,7 @@ export default async function ProjectsSection() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           {proyectos.slice(0, 4).map((p) => (
-            <article
-              key={p.id}
-              className="group bg-white border border-gray-100 rounded-2xl p-8 hover:border-verde-200 hover:shadow-xl hover:shadow-verde-600/10 transition-all duration-300"
-            >
-              <div className="flex items-start justify-between mb-4">
-                <span className="text-xs font-bold text-verde-600 bg-verde-50 px-3 py-1 rounded-full border border-verde-100">
-                  {p.categoria}
-                </span>
-                <span className="text-xs text-gray-400">{p.año}</span>
-              </div>
-              <h3 className="font-display font-bold text-gray-900 text-xl mb-2 tracking-tight">
-                {p.titulo}
-              </h3>
-              <p className="text-xs text-gray-400 mb-3 font-medium">
-                {p.cliente}
-              </p>
-              <p className="text-gray-500 text-sm leading-relaxed">
-                {p.descripcion}
-              </p>
-            </article>
+            <ProjectCard key={p.id} proyecto={p} variant="compact" headingTag="h3" />
           ))}
         </div>
       </div>
