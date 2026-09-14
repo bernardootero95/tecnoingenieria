@@ -100,7 +100,7 @@ export default async function ServicesSection() {
                 {s.descripcion}
               </p>
               <Link
-                href={`/servicios#${s.slug}`}
+                href={`/servicios/${s.slug}`}
                 className="mt-5 inline-flex items-center gap-1 text-verde-600 font-semibold text-xs uppercase tracking-widest hover:gap-2 transition-all"
               >
                 Saber más

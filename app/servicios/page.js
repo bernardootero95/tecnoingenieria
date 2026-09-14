@@ -23,46 +23,6 @@ export const metadata = {
   },
 };
 
-const detalles = {
-  software: {
-    bullets: [
-      "Sistemas contables y de facturación electrónica",
-      "Plataformas web y aplicaciones empresariales",
-      "Integraciones con DIAN y otras entidades",
-      "Automatización de procesos internos",
-      "Mantenimiento y evolución de sistemas existentes",
-    ],
-  },
-  redes: {
-    bullets: [
-      "Diseño de arquitectura de red LAN/WAN",
-      "Cableado estructurado Cat5e / Cat6 / Fibra óptica",
-      "Configuración de switches, routers y firewalls",
-      "Redes Wi-Fi corporativas con cobertura total",
-      "Mantenimiento preventivo y correctivo",
-      "Monitoreo de red en tiempo real",
-    ],
-  },
-  datos: {
-    bullets: [
-      "Dashboards interactivos con KPIs clave",
-      "Reportes automatizados programados",
-      "Integración con sistemas existentes (ERP, CRM)",
-      "Limpieza y normalización de bases de datos",
-      "Visualización de datos para toma de decisiones",
-    ],
-  },
-  consultoria: {
-    bullets: [
-      "Diagnóstico tecnológico del negocio",
-      "Planificación de transformación digital",
-      "Selección e implementación de herramientas",
-      "Capacitación al equipo de trabajo",
-      "Acompañamiento postventa y soporte",
-    ],
-  },
-};
-
 const iconMap = {
   software: (
     <svg
@@ -197,10 +157,31 @@ export default async function ServiciosPage() {
                   {s.titulo}
                 </h2>
                 <p
-                  className={`text-lg leading-relaxed ${i % 2 === 0 ? "text-gray-500" : "text-verde-100"}`}
+                  className={`text-lg leading-relaxed mb-6 ${i % 2 === 0 ? "text-gray-500" : "text-verde-100"}`}
                 >
                   {s.descripcion}
                 </p>
+                <Link
+                  href={`/servicios/${s.slug}`}
+                  className={`inline-flex items-center gap-1.5 font-semibold text-sm hover:gap-2.5 transition-all ${
+                    i % 2 === 0 ? "text-verde-600" : "text-white"
+                  }`}
+                >
+                  Ver página completa
+                  <svg
+                    className="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2.5}
+                      d="M17 8l4 4m0 0l-4 4m4-4H3"
+                    />
+                  </svg>
+                </Link>
               </div>
               <div>
                 <h3
@@ -211,7 +192,7 @@ export default async function ServiciosPage() {
                   Incluye
                 </h3>
                 <ul className="space-y-3">
-                  {detalles[s.id].bullets.map((b) => (
+                  {s.bullets.map((b) => (
                     <li key={b} className="flex items-start gap-3">
                       <svg
                         className={`w-5 h-5 mt-0.5 shrink-0 ${i % 2 === 0 ? "text-verde-500" : "text-verde-200"}`}

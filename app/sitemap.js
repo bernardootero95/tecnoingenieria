@@ -1,6 +1,9 @@
-export default function sitemap() {
+import { getServicios } from '@/lib/repositories'
+
+export default async function sitemap() {
   const baseUrl = 'https://tecnoingenieriabo.com'
   const now = new Date()
+  const servicios = await getServicios()
 
   return [
     {
@@ -21,6 +24,12 @@ export default function sitemap() {
       changeFrequency: 'monthly',
       priority: 0.9,
     },
+    ...servicios.map((s) => ({
+      url: `${baseUrl}/servicios/${s.slug}`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    })),
     {
       url: `${baseUrl}/productos`,
       lastModified: now,

@@ -12,7 +12,8 @@ export default function ProjectCard({ proyecto, variant = "compact", headingTag 
 
   return (
     <article
-      className={`group relative border transition-all duration-300 overflow-hidden hover:border-verde-200 hover:shadow-xl hover:shadow-verde-600/10 ${
+      id={`proyecto-${proyecto.id}`}
+      className={`group relative border transition-all duration-300 overflow-hidden hover:border-verde-200 hover:shadow-xl hover:shadow-verde-600/10 scroll-mt-24 ${
         isFull
           ? "bg-gray-50 border-gray-100 rounded-3xl p-8 sm:p-10"
           : "bg-white border-gray-100 rounded-2xl p-8"
