@@ -27,7 +27,7 @@ export const metadata = {
     template: "%s | TecnoIngeniería B.O.",
   },
   description:
-    "Empresa de tecnología en Ciénaga, Magdalena. Desarrollo de software a la medida, instalación y mantenimiento de redes, análisis de datos y consultoría tecnológica para empresas.",
+    "Empresa de tecnología en Ciénaga, Magdalena: desarrollo de software, redes, análisis de datos y consultoría tecnológica para empresas en Colombia.",
   keywords: [
     "desarrollo de software Ciénaga",
     "redes informáticas Magdalena",
@@ -104,6 +104,23 @@ export default function RootLayout({ children }) {
               gtag('js', new Date());
               gtag('config', 'G-JL5JEPN9KF');
             `,
+          }}
+        />
+        {/* Schema.org JSON-LD — entidad del sitio, referencia al LocalBusiness del Footer */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              "@id": "https://tecnoingenieriabo.com/#website",
+              url: "https://tecnoingenieriabo.com",
+              name: "TecnoIngeniería B.O.",
+              inLanguage: "es-CO",
+              publisher: {
+                "@id": "https://tecnoingenieriabo.com/#business",
+              },
+            }),
           }}
         />
         <Navbar />

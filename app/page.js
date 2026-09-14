@@ -8,7 +8,7 @@ export const metadata = {
   title:
     "TecnoIngeniería B.O. | Desarrollo de Software y Redes en Ciénaga, Colombia",
   description:
-    "Empresa de tecnología en Ciénaga, Magdalena. Desarrollo de software a la medida, redes e infraestructura IT, análisis de datos y consultoría tecnológica para empresas.",
+    "Empresa de tecnología en Ciénaga, Magdalena: software a la medida, redes e infraestructura IT, análisis de datos y consultoría tecnológica.",
   alternates: {
     canonical: "https://tecnoingenieriabo.com",
   },

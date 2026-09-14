@@ -4,7 +4,7 @@ import { getServicios } from "@/lib/repositories";
 export const metadata = {
   title: "Servicios de Tecnología | Desarrollo de Software, Redes y Datos",
   description:
-    "Desarrollo de software a la medida, instalación de redes, análisis de datos y consultoría tecnológica en Ciénaga, Magdalena, Colombia. Soluciones integrales para empresas.",
+    "Desarrollo de software a la medida, redes, análisis de datos y consultoría tecnológica en Ciénaga, Magdalena. Soluciones integrales para tu empresa.",
   keywords: [
     "desarrollo de software Colombia",
     "redes empresariales Magdalena",

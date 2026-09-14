@@ -5,7 +5,7 @@ import ProductCard from "@/components/ProductCard";
 export const metadata = {
   title: "Productos Propios | Software Desarrollado por TecnoIngeniería B.O.",
   description:
-    "Conoce los productos propios de TecnoIngeniería B.O.: IngeFact, Sistema de Pedidos y Despacho y Contaflow. Software desarrollado y mantenido por nuestro equipo.",
+    "Conoce los productos propios de TecnoIngeniería B.O.: IngeFact, Sistema de Pedidos y Despacho y Contaflow.",
   alternates: {
     canonical: "https://tecnoingenieriabo.com/productos",
   },

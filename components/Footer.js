@@ -101,6 +101,7 @@ export default async function Footer() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "LocalBusiness",
+            "@id": "https://tecnoingenieriabo.com/#business",
             name: empresa.nombre,
             description: empresa.descripcion,
             url: "https://tecnoingenieriabo.com",
