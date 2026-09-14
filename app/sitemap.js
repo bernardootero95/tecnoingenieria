@@ -34,6 +34,12 @@ export default function sitemap() {
       priority: 0.6,
     },
     {
+      url: `${baseUrl}/preguntas-frecuentes`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.6,
+    },
+    {
       url: `${baseUrl}/contacto`,
       lastModified: now,
       changeFrequency: 'yearly',
