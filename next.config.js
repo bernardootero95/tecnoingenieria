@@ -5,7 +5,11 @@ const nextConfig = {
   },
   experimental: {
     serverActions: {
-      allowedOrigins: ['localhost:3000'],
+      allowedOrigins: [
+        'localhost:3000',
+        'tecnoingenieriabo.com',
+        'www.tecnoingenieriabo.com',
+      ],
     },
   },
 }
