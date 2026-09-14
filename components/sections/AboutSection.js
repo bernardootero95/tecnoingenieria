@@ -30,7 +30,7 @@ export default function AboutSection() {
               href="/nosotros"
               className="inline-flex items-center gap-2 bg-gray-950 text-white font-bold px-7 py-3.5 rounded-xl hover:bg-verde-700 transition-all text-sm"
             >
-              Conoce nuestro equipo
+              Conócenos
               <svg
                 className="w-4 h-4"
                 fill="none"

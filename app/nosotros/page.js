@@ -1,17 +1,17 @@
 import Link from "next/link";
-import { getEmpresa, getEquipo } from "@/lib/repositories";
+import { getEmpresa } from "@/lib/repositories";
 
 export const metadata = {
   title: "Nosotros | Empresa de Tecnología en Ciénaga, Magdalena",
   description:
-    "Conoce a TecnoIngeniería B.O., empresa tecnológica en Ciénaga, Magdalena. Misión, visión, valores y equipo especializado en software, redes y análisis de datos.",
+    "Conoce a TecnoIngeniería B.O., empresa tecnológica en Ciénaga, Magdalena. Misión, visión y valores enfocados en software, redes y análisis de datos.",
   alternates: {
     canonical: "https://tecnoingenieriabo.com/nosotros",
   },
   openGraph: {
     title: "Nosotros | TecnoIngeniería B.O.",
     description:
-      "Empresa de tecnología en Ciénaga, Magdalena — misión, visión y equipo.",
+      "Empresa de tecnología en Ciénaga, Magdalena — misión, visión y valores.",
     url: "https://tecnoingenieriabo.com/nosotros",
   },
 };
@@ -40,7 +40,7 @@ const valores = [
 ];
 
 export default async function NosotrosPage() {
-  const [empresa, equipo] = await Promise.all([getEmpresa(), getEquipo()]);
+  const empresa = await getEmpresa();
 
   return (
     <>
@@ -232,51 +232,6 @@ export default async function NosotrosPage() {
                 <p className="text-gray-500 text-sm leading-relaxed">
                   {v.descripcion}
                 </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Equipo */}
-      <section className="py-20 bg-gray-950">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="text-center mb-14">
-            <p className="text-verde-400 font-bold text-xs uppercase tracking-[0.3em] mb-3">
-              El equipo
-            </p>
-            <h2 className="font-display text-4xl font-extrabold text-white tracking-tighter">
-              Especialistas detrás de cada proyecto
-            </h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-            {equipo.map((m, i) => (
-              <div
-                key={i}
-                className="bg-gray-900 border border-gray-800 rounded-2xl p-8 text-center hover:border-verde-700 transition-all"
-              >
-                <div className="w-16 h-16 bg-verde-600/20 text-verde-400 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth={1.5}
-                    className="w-8 h-8"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z"
-                    />
-                  </svg>
-                </div>
-                <h3 className="font-display font-bold text-white mb-1">
-                  {m.nombre}
-                </h3>
-                <p className="text-verde-400 text-xs font-semibold uppercase tracking-widest mb-3">
-                  {m.rol}
-                </p>
-                <p className="text-gray-400 text-sm">{m.descripcion}</p>
               </div>
             ))}
           </div>
