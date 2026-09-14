@@ -59,12 +59,11 @@ export default function HeroSection() {
         </div>
 
         {/* Estadísticas rápidas */}
-        <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-4 animate-fade-up delay-400">
+        <div className="mt-20 grid grid-cols-1 sm:grid-cols-3 gap-4 animate-fade-up delay-400">
           {[
             { num: "+5", label: "Años de experiencia" },
             { num: "100%", label: "Compromiso técnico" },
             { num: "24/7", label: "Soporte continuo" },
-            { num: "+20", label: "Proyectos entregados" },
           ].map((s) => (
             <div
               key={s.label}

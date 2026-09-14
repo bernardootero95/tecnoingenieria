@@ -83,12 +83,12 @@ export default async function NosotrosPage() {
               <p className="text-gray-500 leading-relaxed">
                 Hoy somos referentes regionales en desarrollo de software,
                 infraestructura de redes y análisis de datos, con más de 5 años
-                de experiencia y proyectos entregados a empresas privadas,
-                instituciones educativas y entidades públicas.
+                de experiencia y proyectos entregados a empresas privadas de
+                distintos sectores.
               </p>
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               {[
                 {
                   num: "+5",
@@ -96,25 +96,17 @@ export default async function NosotrosPage() {
                   bg: "bg-verde-600 text-white",
                 },
                 {
-                  num: "+20",
-                  label: "Proyectos entregados",
-                  bg: "bg-gray-950 text-white",
-                },
-                {
                   num: "100%",
                   label: "Clientes satisfechos",
-                  bg: "bg-verde-50 text-verde-700",
+                  bg: "bg-gray-950 text-white",
                 },
                 {
                   num: "4",
                   label: "Áreas de especialización",
-                  bg: "bg-gray-50 text-gray-900",
+                  bg: "bg-verde-50 text-verde-700",
                 },
               ].map((s, i) => (
-                <div
-                  key={i}
-                  className={`${s.bg} rounded-2xl p-8 text-center ${i === 1 ? "lg:translate-y-5" : ""} ${i === 2 ? "lg:-translate-y-5" : ""}`}
-                >
+                <div key={i} className={`${s.bg} rounded-2xl p-8 text-center`}>
                   <p className="font-display text-4xl font-black mb-2">
                     {s.num}
                   </p>
