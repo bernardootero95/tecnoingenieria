@@ -41,7 +41,7 @@ export default async function Footer() {
                 { href: "/", label: "Inicio" },
                 { href: "/nosotros", label: "Nosotros" },
                 { href: "/servicios", label: "Servicios" },
-                { href: "/proyectos", label: "Proyectos" },
+                { href: "/productos", label: "Productos" },
                 { href: "/contacto", label: "Contacto" },
               ].map((l) => (
                 <li key={l.href}>

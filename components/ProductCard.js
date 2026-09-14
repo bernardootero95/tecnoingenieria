@@ -2,13 +2,13 @@
 
 import { useState } from "react";
 
-export default function ProjectCard({ proyecto, variant = "compact", headingTag = "h3" }) {
+export default function ProductCard({ producto, variant = "compact", headingTag = "h3" }) {
   const [open, setOpen] = useState(false);
   const isFull = variant === "full";
   const Heading = headingTag;
 
   const hasDetails =
-    (proyecto.tecnologias && proyecto.tecnologias.length > 0) || proyecto.resultado;
+    (producto.tecnologias && producto.tecnologias.length > 0) || producto.resultado;
 
   return (
     <article
@@ -20,16 +20,16 @@ export default function ProjectCard({ proyecto, variant = "compact", headingTag 
     >
       {isFull && (
         <span className="absolute top-6 right-8 font-display text-8xl font-black text-gray-100 group-hover:text-verde-50 transition-colors select-none">
-          {String(proyecto.id).padStart(2, "0")}
+          {String(producto.id).padStart(2, "0")}
         </span>
       )}
 
       <div className="relative z-10">
         <div className="flex items-center gap-3 mb-4">
           <span className="text-xs font-bold text-verde-600 bg-verde-50 border border-verde-100 px-3 py-1 rounded-full">
-            {proyecto.categoria}
+            {producto.categoria}
           </span>
-          <span className="text-xs text-gray-400 font-medium">{proyecto.año}</span>
+          <span className="text-xs text-gray-400 font-medium">{producto.año}</span>
         </div>
 
         <Heading
@@ -37,12 +37,20 @@ export default function ProjectCard({ proyecto, variant = "compact", headingTag 
             isFull ? "text-2xl" : "text-xl"
           }`}
         >
-          {proyecto.titulo}
+          {producto.titulo}
         </Heading>
-        <p className="text-verde-600 text-xs font-bold uppercase tracking-widest mb-4">
-          {proyecto.cliente}
+        {producto.usadoPor && (
+          <p className="text-verde-600 text-xs font-bold uppercase tracking-widest mb-4">
+            {producto.usadoPor}
+          </p>
+        )}
+        <p
+          className={`text-gray-500 text-sm leading-relaxed ${
+            producto.usadoPor ? "" : "mt-1"
+          }`}
+        >
+          {producto.descripcion}
         </p>
-        <p className="text-gray-500 text-sm leading-relaxed">{proyecto.descripcion}</p>
 
         {hasDetails && (
           <>
@@ -52,13 +60,13 @@ export default function ProjectCard({ proyecto, variant = "compact", headingTag 
               }`}
             >
               <div className="overflow-hidden">
-                {proyecto.tecnologias?.length > 0 && (
+                {producto.tecnologias?.length > 0 && (
                   <div className="mb-4">
                     <p className="text-xs font-bold text-gray-400 uppercase tracking-wide mb-2">
                       Tecnologías
                     </p>
                     <div className="flex flex-wrap gap-2">
-                      {proyecto.tecnologias.map((t) => (
+                      {producto.tecnologias.map((t) => (
                         <span
                           key={t}
                           className="text-xs font-medium text-gray-600 bg-gray-100 px-2.5 py-1 rounded-md"
@@ -70,13 +78,13 @@ export default function ProjectCard({ proyecto, variant = "compact", headingTag 
                   </div>
                 )}
 
-                {proyecto.resultado && (
+                {producto.resultado && (
                   <div>
                     <p className="text-xs font-bold text-gray-400 uppercase tracking-wide mb-2">
                       Alcance y resultados
                     </p>
                     <p className="text-gray-500 text-sm leading-relaxed">
-                      {proyecto.resultado}
+                      {producto.resultado}
                     </p>
                   </div>
                 )}

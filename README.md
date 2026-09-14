@@ -21,7 +21,7 @@ Abre [http://localhost:3000](http://localhost:3000)
 tecnoingenieria/
 ├── app/
 │   ├── layout.js          → Layout global + metadatos SEO globales
-│   ├── page.js            → Página de inicio (Hero, Servicios, Nosotros, Proyectos, CTA)
+│   ├── page.js            → Página de inicio (Hero, Servicios, Nosotros, Productos, CTA)
 │   ├── globals.css        → Estilos globales + fuentes
 │   ├── sitemap.js         → Sitemap automático → /sitemap.xml
 │   ├── robots.js          → robots.txt automático → /robots.txt
@@ -29,8 +29,8 @@ tecnoingenieria/
 │   │   └── page.js        → Página Nosotros
 │   ├── servicios/
 │   │   └── page.js        → Página Servicios
-│   ├── proyectos/
-│   │   └── page.js        → Página Proyectos
+│   ├── productos/
+│   │   └── page.js        → Página Productos propios
 │   └── contacto/
 │       └── page.js        → Página Contacto + formulario
 ├── components/
@@ -52,7 +52,7 @@ tecnoingenieria/
 
 - Información de la empresa (teléfono, email, dirección)
 - Lista de servicios con descripciones
-- Proyectos del portafolio
+- Productos propios
 - Equipo
 
 ---

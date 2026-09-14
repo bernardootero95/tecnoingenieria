@@ -6,7 +6,7 @@ import Image from "next/image";
 const links = [
   { href: "/nosotros", label: "Nosotros" },
   { href: "/servicios", label: "Servicios" },
-  { href: "/proyectos", label: "Proyectos" },
+  { href: "/productos", label: "Productos" },
 ];
 
 export default function Navbar() {
